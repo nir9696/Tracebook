@@ -161,6 +161,10 @@ footer a:hover {
 	border-color: #faebcc;
 }
 
+.container-fluid {
+	padding-bottom: 70px;
+}
+
 @-webkit-keyframes slide-up {
 	from {
 		transition: translateY(0);
