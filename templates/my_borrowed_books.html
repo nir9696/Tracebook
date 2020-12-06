@@ -3,7 +3,10 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
 {% endblock %}
 {% block title %} My borrowed books {% endblock %}
-{% block div %}<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>{% endblock %}
+{% block div %}
+<h2> My Borrowed Books </h2>
+<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>{
+% endblock %}
 {% block content %}
 <div class="table-container">
 	<table>
