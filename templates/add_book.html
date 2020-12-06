@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
+{% endblock %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<form class='multi-form' method="post">
+   <div class="flex-row">
+      <label class="lf--label" for="book_name">
+      </label>
+      <input id="book_name" name="book_name" class='lf--input' placeholder='Book Name' type='text' required>
+   </div>
+   <div class="flex-row">
+      <label class="lf--label" for="number_of_pages">
+      </label>
+      <input id="number_of_pages" name="number_of_pages" class='lf--input' placeholder='Number Of Pages' type='number'>
+   </div>
+   <input class='lf--submit' type='submit' value='SUBMIT'>
+</form>
+{% endblock %}
+

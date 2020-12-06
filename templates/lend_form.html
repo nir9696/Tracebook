@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
+{% endblock %}
+{% block title %}Lend Book{% endblock %}
+{% block div %}<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>{% endblock %}
+{% block content %}
+<form class='multi-form' method="post">
+   <div class="flex-row">
+      <label class="lf--label" for="book_name"></label>
+      <select name="book_name" id="book_name" class='lf--input'>
+         <option value="" disabled selected>Choose a book:</option>
+         {% for r in books_query %}
+         <option>
+            {{r.title}}
+         </option>
+         {% endfor %}
+      </select>
+   </div>
+   <div class="flex-row">
+      <label class="lf--label" for="lend_to"></label>
+      <select name="lend_to" id="lend_to" class='lf--input'>
+         <option value="" disabled selected>Choose a user to lend to:</option>
+         {% for r in users_query %}
+         <option>
+            {{r.name}}
+         </option>
+         {% endfor %}
+      </select>
+   </div>
+   <div class="flex-row">
+      <label class="lf--label" for="r_date">
+      </label>
+      <input id="r_date" name="r_date" class='lf--input' placeholder="Return Date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+   </div>
+   <input class='lf--submit' type='submit' value='SUBMIT'>
+</form>
+<a class='lf--forgot' href="{{ url_for('add_book') }}">New book?</a>
+{% endblock %}

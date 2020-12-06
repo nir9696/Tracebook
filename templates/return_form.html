@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
+{% endblock %}
+{% block title %} Return Book{% endblock %}
+{% block div %}<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>{% endblock %}
+{% block content %}
+<form class='multi-form' method="post">
+   <div class="flex-row">
+      <label class="lf--label" for="book_name"></label>
+      <select name="book_name" id="book_name" class='lf--input'>
+         <option value="" disabled selected>Choose a book:</option>
+         {% for r in books_query %}
+         <option>
+            {{r.title}}
+         </option>
+         {% endfor %}
+      </select>
+   </div>
+   <div class="flex-row">
+      <label class="lf--label" for="return_to"></label>
+      <select name="return_to" id="return_to" class='lf--input'>
+         <option value="" disabled selected>Choose a user to return the book to:</option>
+         {% for r in users_query %}
+         <option>
+            {{r.name}}
+         </option>
+         {% endfor %}
+      </select>
+   </div>
+   <input class='lf--submit' type='submit' value='SUBMIT'>
+</form>
+{% endblock %}

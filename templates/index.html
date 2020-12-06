@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
+{% endblock %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<div class='notfications'>
+   {% for n in notfications_query %}
+   <p class='notfi'>
+      <strong class='blink_me' id='notice'>NOTICE!</strong> You're late! You should have returned the book <strong class='notice-details'>{{n.title}}</strong> to <strong class='notice-details'>{{n.name}}</strong> on <strong class='notice-details'>{{n.return_until_date}}</strong>
+   </p>
+   {% endfor %}
+</div>
+{% if logout_flag%}
+<div class="desc">
+   <p>
+      This is an app for managing lending books between friends.
+      Each user logs in to the app using a username and a password. 
+      Then he can:
+   </p>
+   <div class='desc-list'>
+      <p>
+         1. View the list of books he has borrowed.
+      </p>
+      <p>
+         2. View the list of books he has lent.
+      </p>
+      <p>
+         3. View all books he owns and has entered into the system.
+      </p>
+      <p>
+         4. Adding a new book he owns to the system.
+      </p>
+      <p>
+         5. Lend a book to an existing user in the system.
+      </p>
+      <p>
+         6. Return a book he has borrowed from another user.
+      </p>
+      <p>
+         7. Get alerts - which books he should've returned already to their owners.
+      </p>
+   </div>
+</div>
+{% endif %}
+{% endblock %}

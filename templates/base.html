@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8"/>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/base_style.css')}}"/>
+      {% block link %}{% endblock %}
+      <title>{% block title %}{% endblock %}</title>
+   </head>
+   <body>
+      <!-- Credit to http://grohit.com/ -->
+      <div>{{login_user}}</div>
+      <a href = "{{ url_for('home') }}">
+         <p class='title' data-item='Tracebook'><span id="tr">Tr</span>acebook</p>
+      </a>
+      <section>
+         <div>{% block div %}{% endblock %}</div>
+         <nav>
+            <ul class="menuItems">
+               <li><a href="{{ url_for('home') }}" data-item='Home'>Home</a></li>
+               <li><a href="{{ url_for('login') }}" data-item='Login'>Login</a></li>
+               <li><a href="{{ url_for('logout') }}" data-item='Logout'>Logout</a></li>
+               <li><a href="{{ url_for('add_book') }}" data-item='Add Book'>Add Book</a></li>
+               <li>
+                  <a href="{{ url_for('lend_form') }}" data-item='Lend'>Lend</a>
+               </li>
+               <li>
+                  <a href="{{ url_for('return_form') }}" data-item='Return'>Return</a>
+               </li>
+               <li>
+                  <a href="{{ url_for('my_books') }}" data-item='Books'>Books</a>
+               </li>
+               <li>
+                  <a href="{{ url_for('my_borrowed_books') }}" data-item='Borrowed'>Borrowed</a>
+               </li>
+               <li>
+                  <a href="{{ url_for('my_lent_books') }}" data-item='Lent'>Lent</a>
+               </li>
+            </ul>
+         </nav>
+      </section>
+      <!-- Developed by http://grohit.com/ -->
+      <div class="container-fluid">
+         <div>
+            {% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% if messages[0] in ("You are not logged in!", "Nothing to return.", "There is not such user!", "Already Logged in!") %}
+            <p ng-show="success_message" class="flash_message warning">{{messages[0]}}</p>
+					{% endif %}
+					{% if messages[0] in ("You have been logged out!", "Password Saved!", "Login Succesfull!") %}
+            <p ng-show="success_message" class="flash_message success">{{messages[0]}}</p>
+					{% endif %}
+					{% if messages[0] in ("There is already such book in the system!", "Wrong password!") %}
+            <p ng-show="success_message" class="flash_message error">{{messages[0]}}</p>
+					{% endif %}			
+				{% endif %}
+            {% endwith %}
+         </div>
+         {% block content %}{% endblock %}
+      </div>
+      <!-- Footer starts-->
+      <footer>
+         <!-- Copyright -->
+         <div class="footer-copyright text-center">&copy; Developed</i> by
+            <a href="mailto: nir9696@gmail.com" class="white-text" target="_blank">Nir Ki-tov</a>. <a href="#" target="_blank"> </a>
+         </div>
+         <!-- Copyright -->
+      </footer>
+      <!-- Footer ends-->
+   </body>
+</html>
