@@ -3,7 +3,10 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_files/main_style.css')}}"/>
 {% endblock %}
 {% block title %} Return Book{% endblock %}
-{% block div %}<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>{% endblock %}
+{% block div %}
+<h2> Return a book </h2>
+<a class='lf--forgot' href="{{ url_for('update') }}">change password</a>
+{% endblock %}
 {% block content %}
 <form class='multi-form' method="post">
    <div class="flex-row">
