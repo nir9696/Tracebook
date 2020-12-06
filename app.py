@@ -211,7 +211,7 @@ def my_books():
         user_name = session["user_name"]
         user_books = db.session.query(books.title, books.num_of_pages).select_from(users).join(books, users.id == books.owner_id). \
             filter(users.name == user_name).all()
-        return render_template("my_books.html", books_query=user_books)
+        return render_template("my_books.html", books_query=user_books, login_user=get_login_user_name())
     else:
         flash("You are not logged in!")
         return redirect(url_for("home"))
@@ -224,7 +224,7 @@ def my_borrowed_books():
         borrower = users.query.filter_by(name=user_name).first()
         results = db.session.query(books.title, users.name, borrows.lending_date, borrows.return_until_date).select_from(borrows).join(books).join(users, users.id == books.owner_id). \
             filter(borrows.borrower_id == borrower.id).all()
-        return render_template("my_borrowed_books.html", borrowed_query=results)
+        return render_template("my_borrowed_books.html", borrowed_query=results, login_user=get_login_user_name())
     else:
         flash("You are not logged in!")
         return redirect(url_for("home"))
@@ -237,7 +237,7 @@ def my_lent_books():
         lender = users.query.filter_by(name=user_name).first()
         results = db.session.query(books.title, users.name, borrows.lending_date, borrows.return_until_date).select_from(borrows).join(books).join(users, users.id == borrows.borrower_id). \
             filter(books.owner_id == lender.id).all()
-        return render_template("my_lent_books.html", lent_query=results)
+        return render_template("my_lent_books.html", lent_query=results, login_user=get_login_user_name())
     else:
         flash("You are not logged in!")
         return redirect(url_for("home"))
